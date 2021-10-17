@@ -1,0 +1,18 @@
+{
+  "name": "crypto-c",
+  "version": "1.0.0",
+  "description": "GG",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "saif",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^15.1.2",
+    "electron-reloader": "^1.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.23.0"
+  }
+}

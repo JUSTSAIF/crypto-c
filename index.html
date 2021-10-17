@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <!-- Appbar Section -->
+    <div class="draggable menu">
+      <p class="title center-v">CRYPTO-C</p>
+      <img class="close center-v" src="assets/close.png" onclick="Hide()" />
+      <img
+        class="settings center-v"
+        src="assets/settings.png"
+        onclick="Settings()"
+      />
+    </div>
+    <!-- Serach Section -->
+    <section class="center main">
+      <div class="search">
+        <input id="search_bar" type="text" placeholder="Search..." />
+        <ul id="results" class="results">
+          <!-- <li>
+            <span>No Results Found ! 😤</span>
+          </li> -->
+        </ul>
+      </div>
+      <!-- Cryptocurrencies Section -->
+    </section>
+    <div class="center cc_p">
+      <div id="cc-cards" class="cc">
+        <!-- Start Crypto -->
+        <!-- <div class="cc-card" data-ct="Free Web tutorials" style="z-index: 111111111111;"> 
+          <img
+            class="icon"
+            src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"
+          />
+          <div class="price">$1123.34435</div>
+          <img
+            id="remove-btn"
+            data-name="btc"
+            class="remove-btn"
+            onclick="() => RemoveCoinToLocalStorage(this)"
+            src="./assets/remove-p.png"
+          />
+        </div> -->
+      </div>
+    </div>
+
+    <script src="plugins.js"></script>
+  </body>
+</html>

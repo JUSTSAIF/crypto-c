@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+body {
+  background-color: #1f1f1f;
+  margin: 0 !important;
+  height: 100%;
+}
+
+body * {
+  font-family: "Ubuntu", sans-serif;
+  user-select: none;
+}
+
+.draggable {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.menu {
+  width: 100%;
+  height: 40px;
+  background-color: #121212;
+}
+
+.menu .title {
+  font-family: "Bebas Neue", cursive;
+  float: left;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+  animation: color-change 3s infinite linear alternate;
+}
+
+@keyframes color-change {
+  0% {
+    color: #922ff0;
+  }
+  50% {
+    color: #4d94ff;
+  }
+  100% {
+    color: #bbdefb;
+  }
+}
+
+.menu .close {
+  -webkit-app-region: no-drag;
+  float: right;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+.menu .settings {
+  -webkit-app-region: no-drag;
+  margin-right: 10px;
+  float: right;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.center {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.center-v {
+  position: relative;
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.center-e {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+/* ==== Start CC Section ==== */
+
+.cc_p {
+  position: relative;
+  overflow: hidden;
+  height: 514.4px;
+}
+
+.cc {
+  overflow: scroll;
+  margin-top: 40px;
+  height: 100%;
+  width: 98%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.068);
+}
+.cc::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.cc-card {
+  position: relative;
+  margin: 10px;
+  background-color: rgb(241, 234, 241);
+  border-radius: 10px;
+  height: 60px;
+  display: block;
+}
+
+.cc-card .icon {
+  position: relative;
+  width: 40px;
+  /* Center */
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 10px;
+}
+
+.cc-card .remove-btn {
+  width: 30px;
+  padding-left: 10px;
+  /* Center */
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 10px;
+  cursor: pointer;
+}
+
+.cc .price-name {
+  position: absolute;
+  background-color: rgb(82, 80, 80);
+  font-weight: bold;
+  font-size: 19px;
+  color: #d8d8d8;
+  border-radius: 4px;
+  margin-left: 30px;
+  padding: 3px 10px 3px 10px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 111111;
+}
+
+.cc .price {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline;
+  font-size: 19px;
+  font-weight: bolder;
+  color: #118c4f;
+}
+
+/* ==== Start Serach Section ==== */
+
+.main {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.search {
+  position: relative;
+  width: 300px;
+}
+
+span {
+  color: #1e7ad3;
+  text-decoration: none;
+}
+
+span:hover {
+  text-decoration: underline;
+}
+
+input {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #555860;
+}
+
+.search input {
+  height: 26px;
+  width: 100%;
+  padding: 0 12px 0 25px;
+  background: white url("https://cssdeck.com/uploads/media/items/5/5JuDgOa.png")
+    8px 6px no-repeat;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #a8acbc #babdcc #c0c3d2;
+  border-radius: 13px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+  -moz-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+  -ms-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+  -o-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+  box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: #66b1ee;
+  -webkit-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+  -moz-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+  -ms-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+  -o-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+  box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+}
+
+/* .search input:focus + .results {
+  display: block;
+} */
+
+.search .results {
+  /* display: none; */
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  z-index: 1000000000;
+  padding: 0;
+  margin: 0;
+  border-width: 0px;
+  border-style: solid;
+  border-color: #cbcfe2 #c8cee7 #c4c7d7;
+  border-radius: 3px;
+  background-color: #fdfdfd;
+}
+
+.search .results li {
+  display: block;
+}
+
+.search .results li:first-child {
+  margin-top: -1px;
+}
+
+.search .results li:first-child:before,
+.search .results li:first-child:after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px outset transparent;
+}
+
+.search .results li:first-child:before {
+  border-bottom: 5px solid #c4c7d7;
+  top: -11px;
+}
+
+.search .results li:first-child:after {
+  border-bottom: 5px solid #fdfdfd;
+  top: -10px;
+}
+
+.search .results li:first-child:hover:before,
+.search .results li:first-child:hover:after {
+  display: none;
+}
+
+.search .results li:last-child {
+  margin-bottom: -1px;
+}
+
+.search .results span {
+  display: block;
+  position: relative;
+  margin: 0 -1px;
+  padding: 6px 40px 6px 10px;
+  color: #808394;
+  font-weight: 500;
+  text-shadow: 0 1px #fff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.search .results span:hover {
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+  border-color: #2380dd #2179d5 #1a60aa;
+  background-color: #4f4dc2c2;
+}
+
+:-moz-placeholder {
+  color: #a7aabc;
+  font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+  color: #a7aabc;
+  font-weight: 200;
+}
+
+.lt-ie9 .search input {
+  line-height: 26px;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type="text"] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type="submit"] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+
+/* ------ Tooltip styles start here -------- */
+
+[data-ct] {
+  cursor: pointer;
+  position: relative;
+}
+
+[data-ct]::after {
+  background-color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  color: #222;
+  font-size: 14px;
+  padding: 8px 12px;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 6px;
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+  left: 50%;
+  content: attr(data-ct);
+  transform: translate(-50%, 110%) scale(0);
+  transform-origin: top;
+  transition: 0.14s;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+[data-ct]:hover:after {
+  display: block;
+  transform: translate(-50%, 110%) scale(1);
+}
