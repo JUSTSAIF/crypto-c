@@ -6,7 +6,7 @@ let results = document.getElementById("results");
 let CoinsCardsArr = [];
 
 if (localStorage.getItem("coins") == null) {
-  localStorage.setItem("coins", JSON.stringify([]));
+  localStorage.setItem("coins", JSON.stringify(["BTC"]));
 }
 // UNUSED ::
 const getCryptos = () => {
