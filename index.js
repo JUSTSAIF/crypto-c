@@ -20,8 +20,8 @@ function createWindow() {
     autoHideMenuBar: true,
     width: 400,
     height: 600,
-    x: electron.screen.getPrimaryDisplay().bounds.width - 430,
-    y: 430,
+    x: electron.screen.getPrimaryDisplay().bounds.width - 420,
+    y: electron.screen.getPrimaryDisplay().bounds.height - 860,
     skipTaskbar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -36,6 +36,29 @@ function createWindow() {
 ipcMain.on("asynchronous-message", (event, arg) => {
   if (arg === "hide") {
     win.hide();
+  } else if (arg === "show-info") {
+    win = new BrowserWindow({
+      frame: false,
+      resizable: false,
+      titleBarStyle: "customButtonsOnHover",
+      title: "CRYPTO-C by  剣",
+      roundedCorners: true,
+      autoHideMenuBar: true,
+      width: 400,
+      height: 600,
+      x: electron.screen.getPrimaryDisplay().bounds.width - 420,
+      y: electron.screen.getPrimaryDisplay().bounds.height - 860,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+      },
+    });
+    win.setIcon(ICON);
+    win.loadFile("info.html");
+      // infoWin.once("ready-to-show", () => {
+    //   infoWin.show();
+    // });
   }
 });
 

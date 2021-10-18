@@ -53,12 +53,12 @@ body * {
   height: 35px;
   cursor: pointer;
 }
-.menu .settings {
+.menu .info_bu {
   -webkit-app-region: no-drag;
-  margin-right: 10px;
+  margin-right: 4px;
   float: right;
-  width: 26px;
-  height: 26px;
+  width: 23px;
+  height: 23px;
   cursor: pointer;
 }
 
@@ -82,6 +82,23 @@ body * {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.online-offline {
+  -webkit-app-region: no-drag;
+  margin-right: 10px;
+  float: right;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* ==== Loading ==== */
+.loading {
+  margin-left: 145px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s linear;
 }
 /* ==== Start CC Section ==== */
 
@@ -361,15 +378,14 @@ input[type="submit"] {
   color: #ffffff;
 }
 
-
 /* ------ Tooltip styles start here -------- */
 
-[data-ct] {
+[data-tooltip] {
   cursor: pointer;
   position: relative;
 }
 
-[data-ct]::after {
+[data-tooltip]::after {
   background-color: #fff;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
@@ -383,14 +399,14 @@ input[type="submit"] {
   text-align: center;
   bottom: 0px;
   left: 50%;
-  content: attr(data-ct);
+  content: attr(data-tooltip);
   transform: translate(-50%, 110%) scale(0);
   transform-origin: top;
   transition: 0.14s;
   box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-[data-ct]:hover:after {
+[data-tooltip]:hover:after {
   display: block;
   transform: translate(-50%, 110%) scale(1);
 }
