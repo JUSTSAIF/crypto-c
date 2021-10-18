@@ -5,12 +5,136 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Info Page</title>
-    <link rel="stylesheet" type="text/css" href="info.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules\@fortawesome\fontawesome-free\css\all.min.css" />
   </head>
+  <style>
+    .content {
+      color: rgb(207, 207, 207);
+      margin: 20px;
+      margin-top: 120px;
+    }
+
+    a {
+      color: rgb(126, 124, 255);
+      font-weight: bold;
+    }
+
+    /* Contact Buttons */
+    .social-menu ul{
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    }
+
+    .social-menu ul li{
+        list-style: none;
+        margin: 0 15px;
+        cursor: pointer;
+    }
+
+    .social-menu ul li .fab{
+        font-size: 30px;
+        line-height: 60px;
+        transition: .3s;
+        color: #000;
+    }
+
+    .social-menu ul li .fab:hover{
+        color: #fff;
+    }
+
+    .social-menu ul li a{
+        position: relative;
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #fff;
+        text-align: center;
+        transition: .6s;
+        box-shadow: 0 5px 4px rgba(0,0,0,.5);
+    }
+
+    .social-menu ul li a:hover{
+        transform: translate(0, -10%);
+    }
+
+    .social-menu ul li:nth-child(1) a:hover{
+        background-color: rgba(49, 49, 49, 0.829);
+    }
+    .social-menu ul li:nth-child(2) a:hover{
+      background: rgb(205,72,107);
+background: linear-gradient(45deg, rgba(205,72,107,1) 31%, rgba(251,173,80,1) 100%);    }
+    .social-menu ul li:nth-child(3) a:hover{
+        background-color: #0077b5;
+    }
+    .social-menu ul li:nth-child(4) a:hover{
+        background-color: #7289da;
+    }
+    .contactme {
+      cursor: text;
+      position: absolute;
+      left: 50%;
+      padding: 0;
+      margin: 0;
+      top: 112%;
+      color: rgb(141, 121, 255);
+      transform: translate(-50%, -50%);
+    }
+  </style>
   <body>
     <!-- Appbar Section -->
     <div class="draggable menu">
       <p class="title center-v">CRYPTO-C</p>
+      <img
+        onclick='ipcRenderer.send("asynchronous-message", "close-info")'
+        class="close center-v"
+        src="assets/close.png"
+      />
     </div>
+    <!-- Content Section -->
+    <div class="content">
+      <div class="center-v">
+        <h1>CRYPTO-C</h1>
+        <p>
+          This is a simple web application that allows you to watch the price of any cryptocurrency.
+        </p>
+        <p>
+          The application using <a href="https://nomics.com/docs/">Nomics API</a>.
+        </p>
+        <p>
+          The application is written in <a href="https://electronjs.org/">Electron</a> 
+        </p>
+        <p>
+          The application is developed by Saif. You can find the source
+          code <a href="https://github.com/JUSTSAIF/crypto-c">Here</a> 
+          <br>
+        <!-- Contact Section -->
+        <h4 class="contactme">Contact Me</h4>
+        <div class="social-menu">
+          <ul id="social-menu">
+              <li onclick='shell.openExternal("https:/\/github.com/JUSTSAIF")' ><a><i class="fab fa-github"></i></i></a></li>
+              <li onclick='shell.openExternal("https:/\/www.instagram.com/qq_iq")' ><a><i class="fab fa-instagram"></i></a></li>
+              <li onclick='shell.openExternal("https:/\/www.linkedin.com/in/justsaif")' ><a><i class="fab fa-linkedin-in"></i></a></li>
+              <li onclick='shell.openExternal("https:/\/discord.gg/tFdgRrq344")' ><a><i class="fab fa-discord" ></i></a></li>
+          </ul>
+      </div>
+  
+
+      <script>
+      const { ipcRenderer } = require("electron");
+      const shell = require('electron').shell;
+      document.addEventListener("click", function(event) {
+        event.preventDefault();
+        if (event.target.tagName === "A") {
+          shell.openExternal(event.target.href);
+        }
+      });
+    </script>
   </body>
 </html>

@@ -13,6 +13,7 @@
     "electron-reloader": "^1.2.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "axios": "^0.23.0"
   }
 }

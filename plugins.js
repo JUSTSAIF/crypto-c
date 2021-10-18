@@ -22,11 +22,10 @@ if (
   localStorage.setItem("token", "963811799ef58ed031c42bb8984461fcb9264d6d");
 }
 
-
 // Show Info Window
 const Info = () => {
   ipcRenderer.send("asynchronous-message", "show-info");
-}
+};
 
 // UNUSED ::
 const getCryptos = () => {
