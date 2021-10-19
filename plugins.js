@@ -1,6 +1,6 @@
 const { ipcRenderer } = require("electron");
 const Axios = require("axios");
-const cc = require("./Cryptocurrencies.json");
+const cc = require("../Cryptocurrencies.json");
 let search_bar = document.getElementById("search_bar");
 let results = document.getElementById("results");
 let CoinsCardsArr = [];
@@ -204,7 +204,7 @@ const createNewCard = (coin, isLast = false) => {
   card.appendChild(ExCh);
   // RemoveBtn
   RemoveBtn.className = "remove-btn";
-  RemoveBtn.src = "./assets/remove-p.png";
+  RemoveBtn.src = "../assets/remove-p.png";
   RemoveBtn.setAttribute("data-name", coin.currency);
   RemoveBtn.onclick = (e) => {
     RemoveCoinToLocalStorage(e.target.getAttribute("data-name"));

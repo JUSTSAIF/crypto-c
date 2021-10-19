@@ -121,7 +121,6 @@ body * {
   width: 98%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.068);
-  
 }
 .cc::-webkit-scrollbar {
   width: 0 !important;
@@ -202,6 +201,13 @@ body * {
   color: #e53935 !important;
 }
 
+/* Login Icon */
+.login-icon {
+  width: 25px;
+  height: 25px;
+  margin-left: 13px;
+  float: left;
+}
 /* ==== Start Serach Section ==== */
 
 .main {
@@ -434,4 +440,126 @@ input[type="submit"] {
 [data-tooltip]:hover:after {
   display: block;
   transform: translate(-50%, 110%) scale(1);
+}
+
+/* Login Page */
+.login-form {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-form form {
+  flex-grow: 1;
+  display: flex;
+}
+.login-form input {
+  background: #e0e5ec;
+  border: none;
+  padding: 20px 25px;
+  width: 300px;
+  height: 10px;
+  flex-grow: 2;
+  color: #5c7698;
+}
+.login-form input::-webkit-input-placeholder {
+  color: rgba(92, 118, 152, 0.7);
+  text-transform: uppercase;
+}
+.login-form input:focus {
+  outline: none;
+}
+.login-form .btn-submit {
+  background: #c6cfdc;
+  border: none;
+  padding: 20px;
+  flex-grow: 1;
+  color: #5c7698;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  height: 50px;
+}
+
+.login-form .btn-submit:focus {
+  outline: none;
+}
+
+/* register */
+.register {
+  color: #1e7ad3;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.register a {
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 22222;
+}
+
+.info {
+  position: absolute;
+  /* top: 93%; */
+  bottom: -26px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #acacac;
+  font-size: 13px;
+  width: 90%;
+}
+.info span {
+  color: #ff7070;
+}
+
+/* ====== Popup Notification ======*/
+.popup {
+  padding: 7px;
+  background: #fff;
+  border-radius: 5px;
+  position: absolute;
+  left: 3%;
+  top: 13%;
+  transition: all 1s ease-in;
+  width: 40%;
+  opacity: 0;
+  display: none;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: -3px;
+  right: -11px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #e41818;
+}
+
+.box {
+  width: 70%;
+}
+
+.popup h4 {
+  margin: 6px;
 }
