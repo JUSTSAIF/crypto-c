@@ -1,6 +1,8 @@
 const { ipcRenderer } = require("electron");
 const Axios = require("axios");
 const cc = require("../Cryptocurrencies.json");
+const Store = require("electron-store");
+const store = new Store();
 let search_bar = document.getElementById("search_bar");
 let results = document.getElementById("results");
 let CoinsCardsArr = [];
@@ -8,18 +10,12 @@ var zIndex = 1000000;
 var loading = document.createElement("img");
 var setIntervalId;
 
-// If First Time :: create `coins` array & `token` in localStorage
+// If First Time :: create `coins` array in localStorage
 if (
   localStorage.getItem("coins") == "" ||
   localStorage.getItem("coins") == null
 ) {
   localStorage.setItem("coins", JSON.stringify(["BTC"]));
-}
-if (
-  localStorage.getItem("token") == "" ||
-  localStorage.getItem("token") == null
-) {
-  localStorage.setItem("token", "963811799ef58ed031c42bb8984461fcb9264d6d");
 }
 
 // Show Info Window
@@ -31,7 +27,7 @@ const Info = () => {
 const getCryptos = () => {
   return new Promise((resolve, reject) => {
     Axios.get(
-      "https://api.nomics.com/v1/prices?key=e6215948d47c8b6f2b9355c18089f0c1e8f49efb&format=json"
+      `https://api.nomics.com/v1/prices?key=${store.get("token")}&format=json`
     )
       .then((res) => {
         resolve(res.data);
@@ -130,11 +126,13 @@ const GetCoinsData = (coin = null) => {
   let coins = JSON.parse(localStorage.getItem("coins"));
   let URL;
   if (coin !== null) {
-    URL = `https://api.nomics.com/v1/currencies/ticker?key=e6215948d47c8b6f2b9355c18089f0c1e8f49efb&ids=${coin}&interval=1d,30d&convert=USD`;
+    URL = `https://api.nomics.com/v1/currencies/ticker?key=${store.get(
+      "token"
+    )}&ids=${coin}&interval=1d,30d&convert=USD`;
   } else {
-    URL = `https://api.nomics.com/v1/currencies/ticker?key=e6215948d47c8b6f2b9355c18089f0c1e8f49efb&ids=${coins.join(
-      ","
-    )}&interval=1d,30d&convert=USD&per-page=100&page=1`;
+    URL = `https://api.nomics.com/v1/currencies/ticker?key=${store.get(
+      "token"
+    )}&ids=${coins.join(",")}&interval=1d,30d&convert=USD&per-page=100&page=1`;
   }
 
   return new Promise((resolve, reject) => {
@@ -195,9 +193,9 @@ const createNewCard = (coin, isLast = false) => {
 
   // Exchange
   ExCh.className = "exchange-price";
-  if(exchange > 0){
+  if (exchange > 0) {
     ExCh.classList.add("positive");
-  }else{
+  } else {
     ExCh.classList.add("negative");
   }
   ExCh.innerText = exchange.toFixed(2) + "%";
