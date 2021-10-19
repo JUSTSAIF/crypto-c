@@ -13,7 +13,8 @@ var setIntervalId;
 // If First Time :: create `coins` array in localStorage
 if (
   localStorage.getItem("coins") == "" ||
-  localStorage.getItem("coins") == null
+  localStorage.getItem("coins") == null ||
+  localStorage.getItem("coins") == "[]"
 ) {
   localStorage.setItem("coins", JSON.stringify(["BTC"]));
 }
@@ -99,27 +100,35 @@ results.addEventListener(
 );
 
 const SaveCoinToLocalStorage = (coin) => {
-  let coins = JSON.parse(localStorage.getItem("coins")) || [];
-  if (coins.includes(coin) !== true) {
-    coins.push(coin);
-    localStorage.setItem("coins", JSON.stringify(coins));
-    GetCoinsData(coin)
-      .then((res) => {
-        res.forEach((coin) => {
-          document.getElementById("cc-cards").lastChild.style.marginBottom =
-            "10px";
-          createNewCard(coin, true);
-        });
-      })
-      .catch((err) => console.log(err));
+  // check if coin encluded GG word
+  if (coin.includes("No Results Found") !== true) {
+    let coins = JSON.parse(localStorage.getItem("coins")) || [];
+    if (coins.includes(coin) !== true) {
+      coins.push(coin);
+      localStorage.setItem("coins", JSON.stringify(coins));
+      GetCoinsData(coin)
+        .then((res) => {
+          res.forEach((coin) => {
+            var last_card = document.getElementById("cc-cards").lastChild;
+            if (last_card !== null || last_card !== undefined) {
+              last_card.style.marginBottom = "10px";
+            }
+            createNewCard(coin, true);
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   }
 };
 
 const RemoveCoinToLocalStorage = (coin) => {
   let coins = JSON.parse(localStorage.getItem("coins")) || [];
-  coins.splice(coins.indexOf(coin), 1);
-  localStorage.setItem("coins", JSON.stringify(coins));
-  document.querySelector(`[data-ct="${coin}"]`).remove();
+  console.log(coins.length)
+  if (coins.length !== 1) {
+    coins.splice(coins.indexOf(coin), 1);
+    localStorage.setItem("coins", JSON.stringify(coins));
+    document.querySelector(`[data-ct="${coin}"]`).remove();
+  }
 };
 
 const GetCoinsData = (coin = null) => {
@@ -155,7 +164,11 @@ const RenderCoins = (clean) => {
   }
   GetCoinsData()
     .then((res) => {
-      res.forEach((coin) => createNewCard(coin, res[res.length - 1] === coin));
+      res.forEach((coin) => {
+        if (res.length > 0) {
+          createNewCard(coin, res[res.length - 1] === coin);
+        }
+      });
     })
     .then(() => RenderPricesLive());
 };
@@ -170,7 +183,7 @@ const RenderPricesLive = () => {
           let card = document.querySelector(`[data-ct="${coin.currency}"]`);
           card_qs = card.querySelector(".price");
           if (card_qs !== null) {
-            card.querySelector(".price").innerHTML = "$" + coin.price;
+            card_qs.innerHTML = "$" + coin.price;
           } else {
             console.log("error");
           }
@@ -183,7 +196,13 @@ const RenderPricesLive = () => {
 };
 
 const createNewCard = (coin, isLast = false) => {
-  var exchange = (coin["1d"].price_change / coin.price) * 100; // (837.86729941/62349.88277057)*100
+  var price_change = 0;
+  try {
+    price_change = coin["1d"].price_change;
+  } catch (err) {
+    price_change = coin["30d"].price_change;
+  }
+  var exchange = (price_change / coin.price) * 100; // (837.86729941/62349.88277057)*100
   var card = document.createElement("div");
   var Price = document.createElement("div");
   var Img = document.createElement("img");
