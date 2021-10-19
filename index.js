@@ -13,6 +13,7 @@ process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 function createWindows() {
   // Main Window
   win = new BrowserWindow({
+    transparent: true,
     frame: false,
     alwaysOnTop: true,
     resizable: false,
@@ -20,10 +21,10 @@ function createWindows() {
     title: "CRYPTO-C by  剣",
     roundedCorners: true,
     autoHideMenuBar: true,
-    width: 400,
-    height: 600,
-    x: electron.screen.getPrimaryDisplay().bounds.width - 420,
-    y: electron.screen.getPrimaryDisplay().bounds.height - 860,
+    width: 250,
+    height: 450,
+    x: electron.screen.getPrimaryDisplay().bounds.width - 250,
+    y: (electron.screen.getPrimaryDisplay().bounds.height - 450) / 2 ,
     skipTaskbar: true,
     webPreferences: {
       nodeIntegration: true,

@@ -185,11 +185,23 @@ const RenderPricesLive = () => {
 };
 
 const createNewCard = (coin, isLast = false) => {
+  var exchange = (coin["1d"].price_change / coin.price) * 100; // (837.86729941/62349.88277057)*100
   var card = document.createElement("div");
   var Price = document.createElement("div");
   var Img = document.createElement("img");
   var RemoveBtn = document.createElement("img");
+  var ExCh = document.createElement("div");
   card.className = "cc-card";
+
+  // Exchange
+  ExCh.className = "exchange-price";
+  if(exchange > 0){
+    ExCh.classList.add("positive");
+  }else{
+    ExCh.classList.add("negative");
+  }
+  ExCh.innerText = exchange.toFixed(2) + "%";
+  card.appendChild(ExCh);
   // RemoveBtn
   RemoveBtn.className = "remove-btn";
   RemoveBtn.src = "./assets/remove-p.png";
@@ -197,6 +209,7 @@ const createNewCard = (coin, isLast = false) => {
   RemoveBtn.onclick = (e) => {
     RemoveCoinToLocalStorage(e.target.getAttribute("data-name"));
   };
+  RemoveBtn.setAttribute("title", "Delete");
   // IMG coin
   Img.className = "icon";
   Img.src = coin.logo_url

@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
+.trans {
+  background-color: transparent;
+}
+
 body {
   background-color: #1f1f1f;
   margin: 0 !important;
   height: 100%;
+  /* border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px; */
 }
 
 body * {
@@ -27,7 +33,7 @@ body * {
 .menu .title {
   font-family: "Bebas Neue", cursive;
   float: left;
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 20px;
   color: #fff;
   letter-spacing: 1px;
@@ -95,7 +101,7 @@ body * {
 
 /* ==== Loading ==== */
 .loading {
-  margin-left: 145px;
+  margin-left: 72px;
   visibility: hidden;
   opacity: 0;
   transition: visibility 1s, opacity 1s linear;
@@ -105,7 +111,7 @@ body * {
 .cc_p {
   position: relative;
   overflow: hidden;
-  height: 514.4px;
+  height: 364.4px;
 }
 
 .cc {
@@ -115,6 +121,7 @@ body * {
   width: 98%;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.068);
+  
 }
 .cc::-webkit-scrollbar {
   width: 0 !important;
@@ -140,13 +147,13 @@ body * {
 }
 
 .cc-card .remove-btn {
-  width: 30px;
+  width: 15px;
   padding-left: 10px;
   /* Center */
   position: absolute;
-  top: 50%;
+  top: 18%;
   transform: translate(0, -50%);
-  right: 10px;
+  right: 5px;
   cursor: pointer;
 }
 
@@ -168,13 +175,31 @@ body * {
 
 .cc .price {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 53%;
   transform: translate(-50%, -50%);
   display: inline;
-  font-size: 19px;
+  font-size: 15px;
   font-weight: bolder;
   color: #118c4f;
+}
+.cc .exchange-price {
+  position: absolute;
+  top: 66%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  display: inline;
+  font-size: 15px;
+  font-weight: bolder;
+  color: #118c4f;
+}
+
+.postitive {
+  color: #118c4f !important;
+}
+
+.negative {
+  color: #e53935 !important;
 }
 
 /* ==== Start Serach Section ==== */
@@ -187,7 +212,7 @@ body * {
 
 .search {
   position: relative;
-  width: 300px;
+  width: 204px;
 }
 
 span {
@@ -381,7 +406,7 @@ input[type="submit"] {
 /* ------ Tooltip styles start here -------- */
 
 [data-tooltip] {
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
 }
 
