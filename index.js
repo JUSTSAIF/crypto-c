@@ -1,6 +1,14 @@
 const { default: axios } = require("axios");
 const electron = require("electron");
-const { app, Menu, Tray, BrowserWindow, ipcMain, dialog } = require("electron");
+const {
+  remote,
+  app,
+  Menu,
+  Tray,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+} = require("electron");
 const ICON = "./assets/aka.ico";
 let tray = null;
 let MainWin = null;
@@ -14,7 +22,7 @@ try {
 } catch (_) {}
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 
-function createWindows() {
+function createMainWindow() {
   // Main Window
   MainWin = new BrowserWindow({
     show: false,
@@ -39,6 +47,8 @@ function createWindows() {
   });
   MainWin.setIcon(ICON);
   MainWin.loadFile("layout/index.html");
+}
+function createWindows() {
   // Info Win
   InfoWin = new BrowserWindow({
     show: false,
@@ -91,64 +101,70 @@ ipcMain.on("asynchronous-message", (event, arg) => {
       InfoWin.hide();
       break;
     case "close-app":
-      app.quit();
+      app.exit();
       break;
   }
 });
 
 ipcMain.on("login", function (event, data) {
-  CheckLogin(data)
-    .then((res) => {
-      if (res) {
-        LoginWin.webContents.send("login", "success");
-        setTimeout(() => {
+  setTimeout(() => {
+    CheckLogin(data)
+      .then((res) => {
+        if (res) {
+          LoginWin.webContents.send("login", "success");
           LoginWin.hide();
+          createMainWindow();
           MainWin.show();
           RunApp();
           store.set("token", data);
-        }, 2000);
-      } else {
-        LoginWin.webContents.send("login", "Invalid Token");
-      }
-    })
-    .catch((err) => app.quit());
+        } else {
+          LoginWin.webContents.send("login", "Invalid Token");
+        }
+      })
+      .catch((err) => {
+        LoginWin.webContents.send("login", "Trying after 3 second");
+      });
+  }, 2000);
 });
 
 app.whenReady().then(() => {
-  // store.set("token", "");
+  store.set("token", "");
   // Create All Windows
   createWindows();
-  axios
-    .get("https://www.google.com/")
-    .then(() => {
-      //  Check if Login
-      CheckLogin(store.get("token")).then((res) => {
-        // console.log(res);
-        if (res === false) {
-          LoginWin.show();
-        } else {
-          RunApp();
-        }
-      });
-    })
-    .then(() => {
-      InfoWin.on("close", async (e) => {
-        e.preventDefault();
-      });
-    })
-    .catch(() => {
-      return dialog
-        .showMessageBox({
-          title: "There's no internet",
-          message: "No internet available",
-          type: "warning",
-          buttons: ["close"],
-          defaultId: 0,
-        })
-        .then(() => {
-          app.quit();
+  setTimeout(() => {
+    axios
+      .get("https://www.google.com/")
+      .then(() => {
+        //  Check if Login
+        CheckLogin(store.get("token")).then((res) => {
+          // console.log(res);
+          if (res === false) {
+            LoginWin.show();
+          } else {
+            createMainWindow();
+            RunApp();
+          }
         });
-    });
+      })
+      .then(() => {
+        InfoWin.on("close", async (e) => {
+          e.preventDefault();
+        });
+      })
+      .catch(() => {
+        return dialog
+          .showMessageBox({
+            title: "There's no internet",
+            message: "No internet available",
+            type: "warning",
+            buttons: ["close"],
+            defaultId: 0,
+          })
+          .then(() => {
+            app.exit();
+          });
+      });
+  }, 1000);
 });
 
 const RunApp = () => {
@@ -156,7 +172,7 @@ const RunApp = () => {
   MainWin.show();
   tray = new Tray(ICON);
   const contextMenu = Menu.buildFromTemplate([
-    { label: "Exit", type: "normal", role: "quit" },
+    { label: "Exit", type: "normal", click: () => app.exit() },
   ]);
   // Set tray icon
   tray.setToolTip("CRYPTO-C");

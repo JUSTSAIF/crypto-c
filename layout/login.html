@@ -49,9 +49,9 @@
               const { ipcRenderer } = require("electron");
               const shell = require('electron').shell;
               const login = () => {
-                ipcRenderer.send('login', document.getElementById("token").value);
+                  ipcRenderer.send('login', document.getElementById("token").value);
               }
-              
+
               ipcRenderer.on('login', function(event, data) {
                 document.getElementById("popup").style.display = "block";
                 document.getElementById("popup-txt").innerText = data;
