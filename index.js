@@ -128,7 +128,7 @@ ipcMain.on("login", function (event, data) {
 });
 
 app.whenReady().then(() => {
-  store.set("token", "");
+  // store.set("token", "");
   // Create All Windows
   createWindows();
   setTimeout(() => {
