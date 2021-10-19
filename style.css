@@ -108,10 +108,23 @@ body * {
 }
 /* ==== Start CC Section ==== */
 
-.cc_p {
-  position: relative;
+.hide-scroll {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  height: 364.4px;
+}
+
+.cc_p {
+  /* position: relative;
+  overflow: hidden;
+  height: 364.4px; */
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  padding-left: 8px;
+  margin-bottom: 50px;
+  box-sizing: content-box; 
 }
 
 .cc {
@@ -120,7 +133,6 @@ body * {
   height: 100%;
   width: 98%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.068);
 }
 .cc::-webkit-scrollbar {
   width: 0 !important;

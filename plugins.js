@@ -244,7 +244,7 @@ const createNewCard = (coin, isLast = false) => {
   results.appendChild(card);
   card.appendChild(RemoveBtn);
   if (isLast) {
-    card.style.marginBottom = "50px";
+    card.style.marginBottom = "125px";
   }
   card.setAttribute("data-ct", coin.currency);
   card.setAttribute("data-tooltip", coin.name);
