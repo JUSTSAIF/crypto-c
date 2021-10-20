@@ -26,9 +26,8 @@ function createMainWindow() {
   // Main Window
   MainWin = new BrowserWindow({
     show: false,
-    // transparent: true,
     frame: false,
-    alwaysOnTop: true,
+    // alwaysOnTop: true,
     resizable: true,
     titleBarStyle: "customButtonsOnHover",
     title: "CRYPTO-C by  剣",
@@ -49,9 +48,14 @@ function createMainWindow() {
       enableRemoteModule: true,
     },
   });
+  MainWin.setAlwaysOnTop(true, "normal");
   MainWin.setIcon(ICON);
   MainWin.loadFile("layout/index.html");
+  // setInterval(() => {
+  //   MainWin.setAlwaysOnTop(true);
+  // }, 1);
 }
+
 function createWindows() {
   // Info Win
   InfoWin = new BrowserWindow({
@@ -132,7 +136,6 @@ ipcMain.on("login", function (event, data) {
 });
 
 app.whenReady().then(() => {
-  // store.set("token", "");
   // Create All Windows
   createWindows();
   setTimeout(() => {
