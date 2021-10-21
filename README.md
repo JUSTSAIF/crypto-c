@@ -22,6 +22,8 @@ and in the future maybe will add more options ..,
 
 
 <div align="center">
+   
+   
 #### GIF img for main widget
 <img src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/main.gif?raw=true" />
    
