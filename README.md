@@ -23,14 +23,12 @@ and in the future maybe will add more options ..,
 
 <div align="center">
 #### GIF img for main widget
-<img width="400px" src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/main.gif?raw=true" />
+<img src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/main.gif?raw=true" />
    
-<div>
-   <h4>LOGIN page</h4>
-   <img style="display:inline" width="400px" src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/login.png?raw=true" />
+#### LOGIN page
+<img src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/login.png?raw=true" />
 
 
-   <h4>Info page</h4>
-   <img style="display:inline" width="400px" src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/info.png?raw=true" />
-</div>
+#### Info page
+<img src="https://github.com/JUSTSAIF/crypto-c/blob/main/github-assets/info.png?raw=true" />
 </div>
