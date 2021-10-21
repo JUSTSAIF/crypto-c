@@ -16,11 +16,11 @@ let InfoWin = null;
 let LoginWin = null;
 const Store = require("electron-store");
 const store = new Store();
-
-try {
-  require("electron-reloader")(module);
-} catch (_) {}
+// try {
+//   require("electron-reloader")(module);
+// } catch (_) {}
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
+const gotTheLock = app.requestSingleInstanceLock();
 
 function createMainWindow() {
   // Main Window
@@ -96,84 +96,97 @@ function createWindows() {
   LoginWin.setIcon("assets/login.png");
   LoginWin.loadFile("layout/login.html");
 }
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on("second-instance", (event, commandLine, workingDirectory) => {
+    MainWin.show();
+  });
 
-ipcMain.on("asynchronous-message", (event, arg) => {
-  switch (arg) {
-    case "hide":
-      MainWin.hide();
-      break;
-    case "show-info":
-      InfoWin.show();
-      break;
-    case "close-info":
-      InfoWin.hide();
-      break;
-    case "close-app":
-      app.exit();
-      break;
-  }
-});
+  ipcMain.on("asynchronous-message", (event, arg) => {
+    switch (arg) {
+      case "hide":
+        MainWin.hide();
+        break;
+      case "show-info":
+        InfoWin.show();
+        break;
+      case "close-info":
+        InfoWin.hide();
+        break;
+      case "close-app":
+        app.exit();
+        break;
+    }
+  });
 
-ipcMain.on("login", function (event, data) {
-  setTimeout(() => {
-    CheckLogin(data)
-      .then((res) => {
-        if (res) {
-          LoginWin.webContents.send("login", "success");
-          LoginWin.hide();
-          createMainWindow();
-          MainWin.show();
-          RunApp();
-          store.set("token", data);
-        } else {
-          LoginWin.webContents.send("login", "Invalid Token");
-        }
-      })
-      .catch((err) => {
-        LoginWin.webContents.send("login", "Trying after 3 second");
-      });
-  }, 2000);
-});
-
-app.whenReady().then(() => {
-  // Create All Windows
-  createWindows();
-  setTimeout(() => {
-    axios
-      .get("https://www.google.com/")
-      .then(() => {
-        //  Check if Login
-        CheckLogin(store.get("token")).then((res) => {
-          // console.log(res);
-          if (res === false) {
-            LoginWin.show();
-          } else {
+  ipcMain.on("login", function (event, data) {
+    setTimeout(() => {
+      CheckLogin(data)
+        .then((res) => {
+          if (res) {
+            LoginWin.webContents.send("login", "success");
+            LoginWin.hide();
             createMainWindow();
+            MainWin.show();
             RunApp();
+            store.set("token", data);
+          } else {
+            LoginWin.webContents.send("login", "Invalid Token");
           }
+        })
+        .catch((err) => {
+          LoginWin.webContents.send("login", "Trying after 3 second");
         });
-      })
-      .then(() => {
-        InfoWin.on("close", async (e) => {
-          e.preventDefault();
-        });
-      })
-      .catch(() => {
-        return dialog
-          .showMessageBox({
-            title: "There's no internet",
-            message: "No internet available",
-            type: "warning",
-            buttons: ["close"],
-            defaultId: 0,
+    }, 2000);
+  });
+
+  app.on("ready", () => {
+    createWindows();
+    createMainWindow();
+    RunApp();
+  }),
+    app.whenReady().then(() => {
+      // Create All Windows
+      createWindows();
+      createMainWindow();
+      RunApp();
+      setTimeout(() => {
+        axios
+          .get("https://www.google.com/")
+          .then(() => {
+            //  Check if Login
+            CheckLogin(store.get("token")).then((res) => {
+              // console.log(res);
+              if (res === false) {
+                LoginWin.show();
+              } else {
+                createMainWindow();
+                RunApp();
+              }
+            });
           })
           .then(() => {
-            app.exit();
+            InfoWin.on("close", async (e) => {
+              e.preventDefault();
+            });
+          })
+          .catch(() => {
+            return dialog
+              .showMessageBox({
+                title: "There's no internet",
+                message: "No internet available",
+                type: "warning",
+                buttons: ["close"],
+                defaultId: 0,
+              })
+              .then(() => {
+                app.exit();
+              });
           });
-      });
-  }, 1000);
-});
-
+      }, 1000);
+    });
+}
 const RunApp = () => {
   // === Run App ===
   MainWin.show();

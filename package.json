@@ -4,7 +4,8 @@
   "description": "GG",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "author": "saif",
   "license": "ISC",
@@ -17,5 +18,36 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "axios": "^0.23.0",
     "electron-store": "^8.0.1"
+  },
+  "build": {
+    "productName": "CRYPTO-C",
+    "appId": "com.saif.cryptoc",
+    "win": {
+      "icon": "release/aka.ico",
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "directories": {
+      "output": "release"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": true
+    },
+    "asarUnpack": "*",
+    "files": [
+      "assets/",
+      "layout/index.html",
+      "layout/info.html",
+      "layout/login.html",
+      "Cryptocurrencies.json",
+      "plugins.js",
+      "style.css",
+      "index.js"
+    ]
   }
 }
