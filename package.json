@@ -1,13 +1,13 @@
 {
   "name": "crypto-c",
   "version": "1.0",
-  "description": "Electron widget show you live cryptocurrency prices .",
+  "description": "Electron widget show you cryptocurrency prices .",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "author": "saif",
+  "author": "Saif | Mr28",
   "license": "ISC",
   "devDependencies": {
     "electron": "^15.1.2",
