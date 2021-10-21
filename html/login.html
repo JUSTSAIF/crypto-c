@@ -16,7 +16,7 @@
           />    
           <p class="title center-v" style="margin-left: 10px;">Login</p>
           <img class="close center-v" src="../assets/images/close.png" onclick='ipcRenderer.send("asynchronous-message", "close-app")' />
-          <img class="info_bu center-v" src="../assets/images/info.png" onclick="Info()" />
+          <img class="info_bu center-v" src="../assets/images/info.png" onclick='ipcRenderer.send("asynchronous-message", "show-info")' />
           <img
             class="online-offline center-v"
             src="../assets/images/online.gif"
