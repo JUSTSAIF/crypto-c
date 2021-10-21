@@ -16,8 +16,8 @@ and in the future maybe will add more options ..,
    - Will show you the login page, create account here and Login using the token that was sent to you by Email .
 
 #### Download :
-   - Binary (portable) , [Link]()
-   - Installer , [Link]()
+   - Binary (portable) , [Link](https://github.com/JUSTSAIF/crypto-c/blob/download/crypto-c_bin_1.0.rar?raw=true)
+   - Installer , [Link](https://github.com/JUSTSAIF/crypto-c/blob/download/crypto-c_release_1.0.exe?raw=true)
 
 
 
