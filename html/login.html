@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRYPTO-C Login</title>
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
   </head>
   <body>
         <!-- Appbar Section -->
         <div class="draggable menu">
           <img
           class="center-v login-icon"
-          src="../assets/login.png" 
+          src="../assets/images/login.png" 
           />    
           <p class="title center-v" style="margin-left: 10px;">Login</p>
-          <img class="close center-v" src="../assets/close.png" onclick='ipcRenderer.send("asynchronous-message", "close-app")' />
-          <img class="info_bu center-v" src="../assets/info.png" onclick="Info()" />
+          <img class="close center-v" src="../assets/images/close.png" onclick='ipcRenderer.send("asynchronous-message", "close-app")' />
+          <img class="info_bu center-v" src="../assets/images/info.png" onclick="Info()" />
           <img
             class="online-offline center-v"
-            src="../assets/online.gif"
+            src="../assets/images/online.gif"
             title="Online Status: Red:Offline Green:Online"
           />    
           <!-- Login Form -->
@@ -51,17 +51,14 @@
               const login = () => {
                   ipcRenderer.send('login', document.getElementById("token").value);
               }
-
               ipcRenderer.on('login', function(event, data) {
                 document.getElementById("popup").style.display = "block";
                 document.getElementById("popup-txt").innerText = data;
                 document.getElementById("popup").style.opacity = 1;
               });
-
               const Close = () => {
                 document.getElementById("popup").style.opacity = 0;
               }
-
           </script>
         </body>
 </html>

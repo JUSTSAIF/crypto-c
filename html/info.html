@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Info Page</title>
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="../node_modules\@fortawesome\fontawesome-free\css\all.min.css" />
   </head>
   <style>
@@ -94,13 +94,13 @@ background: linear-gradient(45deg, rgba(205,72,107,1) 31%, rgba(251,173,80,1) 10
       <img
         onclick='ipcRenderer.send("asynchronous-message", "close-info")'
         class="close center-v"
-        src="../assets/close.png"
+        src="../assets/images/close.png"
       />
     </div>
     <!-- Content Section -->
     <div class="content">
       <div class="center-v">
-        <h1>CRYPTO-C</h1>
+        <h1>CRYPTO-C 1.0</h1>
         <p>
           This is a simple web application that allows you to watch the price of any cryptocurrency.
         </p>
@@ -124,8 +124,6 @@ background: linear-gradient(45deg, rgba(205,72,107,1) 31%, rgba(251,173,80,1) 10
               <li onclick='shell.openExternal("https:/\/discord.gg/tFdgRrq344")' ><a><i class="fab fa-discord" ></i></a></li>
           </ul>
       </div>
-  
-
       <script>
       const { ipcRenderer } = require("electron");
       const shell = require('electron').shell;

@@ -9,16 +9,19 @@ const {
   ipcMain,
   dialog,
 } = require("electron");
-const ICON = "./assets/aka.ico";
+const ICON = __dirname + "/assets/images/aka.ico";
 let tray = null;
 let MainWin = null;
 let InfoWin = null;
 let LoginWin = null;
 const Store = require("electron-store");
 const store = new Store();
+
+// Uncomment this if you want to use Hot reload in development mode
 // try {
 //   require("electron-reloader")(module);
 // } catch (_) {}
+
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 const gotTheLock = app.requestSingleInstanceLock();
 
@@ -27,7 +30,6 @@ function createMainWindow() {
   MainWin = new BrowserWindow({
     show: false,
     frame: false,
-    // alwaysOnTop: true,
     resizable: true,
     titleBarStyle: "customButtonsOnHover",
     title: "CRYPTO-C by  剣",
@@ -50,10 +52,7 @@ function createMainWindow() {
   });
   MainWin.setAlwaysOnTop(true, "normal");
   MainWin.setIcon(ICON);
-  MainWin.loadFile("layout/index.html");
-  // setInterval(() => {
-  //   MainWin.setAlwaysOnTop(true);
-  // }, 1);
+  MainWin.loadFile("html/index.html");
 }
 
 function createWindows() {
@@ -75,7 +74,7 @@ function createWindows() {
     },
   });
   InfoWin.setIcon(ICON);
-  InfoWin.loadFile("layout/info.html");
+  InfoWin.loadFile("html/info.html");
   // Login Win
   LoginWin = new BrowserWindow({
     show: false,
@@ -93,8 +92,8 @@ function createWindows() {
       enableRemoteModule: true,
     },
   });
-  LoginWin.setIcon("assets/login.png");
-  LoginWin.loadFile("layout/login.html");
+  LoginWin.setIcon(__dirname + "/assets/images/login.png");
+  LoginWin.loadFile("html/login.html");
 }
 if (!gotTheLock) {
   app.quit();
@@ -140,52 +139,44 @@ if (!gotTheLock) {
         });
     }, 2000);
   });
-
-  app.on("ready", () => {
+  app.whenReady().then(() => {
+    // Create All Windows
     createWindows();
-    createMainWindow();
-    RunApp();
-  }),
-    app.whenReady().then(() => {
-      // Create All Windows
-      createWindows();
-      createMainWindow();
-      RunApp();
-      setTimeout(() => {
-        axios
-          .get("https://www.google.com/")
-          .then(() => {
-            //  Check if Login
-            CheckLogin(store.get("token")).then((res) => {
-              // console.log(res);
-              if (res === false) {
-                LoginWin.show();
-              } else {
-                createMainWindow();
-                RunApp();
-              }
-            });
-          })
-          .then(() => {
-            InfoWin.on("close", async (e) => {
-              e.preventDefault();
-            });
-          })
-          .catch(() => {
-            return dialog
-              .showMessageBox({
-                title: "There's no internet",
-                message: "No internet available",
-                type: "warning",
-                buttons: ["close"],
-                defaultId: 0,
-              })
-              .then(() => {
-                app.exit();
-              });
+    setTimeout(() => {
+      axios
+        .get("https://www.google.com/")
+        .then(() => {
+          //  Check if Login
+          CheckLogin(store.get("token")).then((res) => {
+            if (res === false) {
+              LoginWin.show();
+            } else {
+              createMainWindow();
+              RunApp();
+            }
           });
-      }, 1000);
-    });
+        })
+        .then(() => {
+          InfoWin.on("close", async (e) => {
+            e.preventDefault();
+          });
+        })
+        .catch(() => {
+          return dialog
+            .showMessageBox({
+              title: "There's no internet",
+              message: "No internet available",
+              type: "warning",
+              buttons: ["close"],
+              defaultId: 0,
+            })
+            .then(() => {
+              store.set("token", "");
+              app.exit();
+            });
+        });
+    }, 1000);
+  });
 }
 const RunApp = () => {
   // === Run App ===
@@ -193,6 +184,14 @@ const RunApp = () => {
   tray = new Tray(ICON);
   const contextMenu = Menu.buildFromTemplate([
     { label: "Exit", type: "normal", click: () => app.exit() },
+    {
+      label: "Logout and Exit",
+      type: "normal",
+      click: () => {
+        store.set("token", "");
+        app.exit();
+      },
+    },
   ]);
   // Set tray icon
   tray.setToolTip("CRYPTO-C");

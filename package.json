@@ -1,7 +1,7 @@
 {
   "name": "crypto-c",
-  "version": "1.0.0",
-  "description": "GG",
+  "version": "1.0",
+  "description": "Electron widget show you live cryptocurrency prices .",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
@@ -23,7 +23,7 @@
     "productName": "CRYPTO-C",
     "appId": "com.saif.cryptoc",
     "win": {
-      "icon": "release/aka.ico",
+      "icon": "release/aka.png",
       "target": [
         "nsis",
         "msi"
@@ -37,17 +37,6 @@
       "perMachine": true,
       "allowToChangeInstallationDirectory": true,
       "runAfterFinish": true
-    },
-    "asarUnpack": "*",
-    "files": [
-      "assets/",
-      "layout/index.html",
-      "layout/info.html",
-      "layout/login.html",
-      "Cryptocurrencies.json",
-      "plugins.js",
-      "style.css",
-      "index.js"
-    ]
+    }
   }
 }

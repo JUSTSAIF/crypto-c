@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Appbar Section -->
+    <div class="draggable menu">
+      <p class="title center-v">CRYPTO-C</p>
+      <img
+        class="close center-v"
+        src="../assets/images/close.png"
+        onclick="Hide()"
+      />
+      <img
+        class="info_bu center-v"
+        src="../assets/images/info.png"
+        onclick="Info()"
+      />
+      <img
+        class="online-offline center-v"
+        src="../assets/images/online.gif"
+        title="Online Status: Red:Offline Green:Online"
+      />
+    </div>
+    <!-- Serach Section -->
+    <section class="center main">
+      <div class="search">
+        <input id="search_bar" type="text" placeholder="Search..." />
+        <ul id="results" class="results"></ul>
+      </div>
+      <!-- Cryptocurrencies Section -->
+    </section>
+    <div class="hide-scroll">
+      <div class="center cc_p">
+        <div id="cc-cards" class="cc"></div>
+      </div>
+    </div>
+    <script src="../assets/js/plugins.js"></script>
+  </body>
+</html>

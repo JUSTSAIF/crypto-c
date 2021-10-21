@@ -1,6 +1,6 @@
 const { ipcRenderer } = require("electron");
 const Axios = require("axios");
-const cc = require("../Cryptocurrencies.json");
+const cc = require("../assets/json/Cryptocurrencies.json");
 const Store = require("electron-store");
 const store = new Store();
 let search_bar = document.getElementById("search_bar");
@@ -48,7 +48,7 @@ window.addEventListener("online", () => {
   loading.style.visibility = "hidden";
   loading.style.opacity = 0;
   document.getElementsByClassName("online-offline")[0].src =
-    "./assets/online.gif";
+    "../assets/images/online.gif";
   setTimeout(() => {
     loading.style.display = "none";
     RenderCoins(true);
@@ -59,7 +59,7 @@ window.addEventListener("offline", () => {
   clearInterval(setIntervalId);
   CreateLoading();
   document.getElementsByClassName("online-offline")[0].src =
-    "./assets/offline.gif";
+    "../assets/images/offline.gif";
 });
 
 // Start ==== Search Bar Get Suggestions ====
@@ -123,7 +123,6 @@ const SaveCoinToLocalStorage = (coin) => {
 
 const RemoveCoinToLocalStorage = (coin) => {
   let coins = JSON.parse(localStorage.getItem("coins")) || [];
-  console.log(coins.length)
   if (coins.length !== 1) {
     coins.splice(coins.indexOf(coin), 1);
     localStorage.setItem("coins", JSON.stringify(coins));
@@ -221,7 +220,7 @@ const createNewCard = (coin, isLast = false) => {
   card.appendChild(ExCh);
   // RemoveBtn
   RemoveBtn.className = "remove-btn";
-  RemoveBtn.src = "../assets/remove-p.png";
+  RemoveBtn.src = "../assets/images/remove-p.png";
   RemoveBtn.setAttribute("data-name", coin.currency);
   RemoveBtn.onclick = (e) => {
     RemoveCoinToLocalStorage(e.target.getAttribute("data-name"));
@@ -253,7 +252,7 @@ const createNewCard = (coin, isLast = false) => {
 
 const CreateLoading = () => {
   loading.className = "loading";
-  loading.src = "./assets/loading_tran.svg";
+  loading.src = "../assets/images/loading_tran.svg";
   loading.style.width = "100px";
   loading.style.visibility = "visible";
   loading.style.opacity = 1;
