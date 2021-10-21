@@ -48,6 +48,7 @@ function createMainWindow() {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
+      devTools: false
     },
   });
   MainWin.setAlwaysOnTop(true, "normal");
@@ -71,6 +72,7 @@ function createWindows() {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
+      devTools: false
     },
   });
   InfoWin.setIcon(ICON);
@@ -90,6 +92,7 @@ function createWindows() {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
+      devTools: false
     },
   });
   LoginWin.setIcon(__dirname + "/assets/images/login.png");
