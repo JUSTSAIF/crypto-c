@@ -1,6 +1,6 @@
 {
   "name": "crypto-c",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Electron widget show you cryptocurrency prices .",
   "main": "index.js",
   "scripts": {
