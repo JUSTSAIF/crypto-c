@@ -8,7 +8,7 @@
 
 #### Description
 ```
-This bot can show you prices of cryptocurrencies ,
+This Widget show you prices of cryptocurrencies ,
 and in the future maybe will add more options ..,
 ```
 #### Setup 
